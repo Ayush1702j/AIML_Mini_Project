@@ -1,0 +1,62 @@
+{
+    "student_name": "Ayush",
+    "prn": "202401040128",
+    "course": "2304322L - Artificial Intelligence",
+    "allocated_algorithm": "Random Forest Classifier",
+    "best_hyperparameters": {
+        "criterion": "gini",
+        "max_depth": 3,
+        "min_samples_leaf": 2,
+        "min_samples_split": 2,
+        "n_estimators": 150
+    },
+    "tuned_rf_metrics": {
+        "accuracy": 0.9344262295081968,
+        "precision": 0.9285714285714286,
+        "recall": 0.9285714285714286,
+        "f1": 0.9285714285714286,
+        "roc_auc": 0.9664502164502166
+    },
+    "comparison_table": [
+        {
+            "Model": "Tuned Random Forest",
+            "Accuracy (%)": 93.44,
+            "Precision (%)": 92.86,
+            "Recall (%)": 92.86,
+            "F1-Score (%)": 92.86,
+            "ROC-AUC": 0.9665
+        },
+        {
+            "Model": "Baseline Random Forest",
+            "Accuracy (%)": 86.89,
+            "Precision (%)": 83.33,
+            "Recall (%)": 89.29,
+            "F1-Score (%)": 86.21,
+            "ROC-AUC": 0.9524
+        },
+        {
+            "Model": "Logistic Regression (L2)",
+            "Accuracy (%)": 85.25,
+            "Precision (%)": 80.65,
+            "Recall (%)": 89.29,
+            "F1-Score (%)": 84.75,
+            "ROC-AUC": 0.9567
+        },
+        {
+            "Model": "Support Vector Machine (RBF)",
+            "Accuracy (%)": 93.44,
+            "Precision (%)": 90.0,
+            "Recall (%)": 96.43,
+            "F1-Score (%)": 93.1,
+            "ROC-AUC": 0.9675
+        },
+        {
+            "Model": "Gradient Boosting (GBM)",
+            "Accuracy (%)": 86.89,
+            "Precision (%)": 83.33,
+            "Recall (%)": 89.29,
+            "F1-Score (%)": 86.21,
+            "ROC-AUC": 0.9437
+        }
+    ]
+}
