@@ -13,14 +13,18 @@ files_to_include = [
     "train_and_evaluate.py",
     "heart_disease_practical_exam.ipynb",
     "app.py",
+    "all_models.joblib",
     "best_random_forest_model.joblib",
     "scaler.joblib",
+    "all_algorithms_benchmark.csv",
     "feature_names.json",
     "evaluation_summary.json",
     "PROJECT_REPORT.pdf",
     "presentation.pptx",
     "PRESENTATION_SLIDES.md",
-    "VIVA_VOCE_PREPARATION.md"
+    "VIVA_VOCE_PREPARATION.md",
+    "requirements.txt",
+    "README.md"
 ]
 
 fig_dir = os.path.join(OUTPUT_DIR, "figures")

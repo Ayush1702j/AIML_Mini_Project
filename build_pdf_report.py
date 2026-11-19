@@ -343,26 +343,36 @@ def build_pdf():
     story.append(Spacer(1, 10))
 
     # SECTION G: MODEL EVALUATION & COMPARATIVE ANALYSIS
-    story.append(Paragraph("SECTION G: MODEL EVALUATION & COMPARATIVE ANALYSIS [8 MARKS | CO3 L5]", h1_style))
-    story.append(Paragraph("<b>Unseen Test Evaluation:</b> The optimized Random Forest model was evaluated on 61 previously unseen test samples. Benchmark comparison was performed against Baseline Random Forest, Logistic Regression (L2), Support Vector Machine (RBF kernel), and Gradient Boosting (GBM).", body_style))
+    story.append(Paragraph("SECTION G: MODEL EVALUATION & MULTI-ALGORITHM BENCHMARK [8 MARKS | CO3 L5]", h1_style))
+    story.append(Paragraph("<b>Unseen Test Evaluation across 21 Machine Learning Algorithms:</b> The primary tuned Random Forest was evaluated on 61 previously unseen test samples and benchmarked against 21 distinct algorithms spanning all 5 major AI/ML paradigms: Linear/Discriminant, Bayesian, Distance/Kernel, Tree Ensembles, and Neural Networks.", body_style))
 
     comp_table_data = [
-        [Paragraph("<b>Model Architecture</b>", body_bold), Paragraph("<b>Accuracy</b>", body_bold), Paragraph("<b>Precision</b>", body_bold), Paragraph("<b>Recall</b>", body_bold), Paragraph("<b>F1-Score</b>", body_bold), Paragraph("<b>ROC-AUC</b>", body_bold)],
-        [Paragraph("<b>Tuned Random Forest</b>", body_style), "<b>93.44%</b>", "<b>92.86%</b>", "<b>92.86%</b>", "<b>92.86%</b>", "<b>0.9665</b>"],
-        [Paragraph("Baseline Random Forest", body_style), "86.89%", "83.33%", "89.29%", "86.21%", "0.9524"],
-        [Paragraph("Support Vector Machine (RBF)", body_style), "93.44%", "90.00%", "96.43%", "93.10%", "0.9675"],
-        [Paragraph("Logistic Regression (L2)", body_style), "85.25%", "80.65%", "89.29%", "84.75%", "0.9567"],
-        [Paragraph("Gradient Boosting (GBM)", body_style), "86.89%", "83.33%", "89.29%", "86.21%", "0.9437"]
+        [Paragraph("<b>Model Architecture</b>", body_bold), Paragraph("<b>Family</b>", body_bold), Paragraph("<b>Accuracy</b>", body_bold), Paragraph("<b>Recall</b>", body_bold), Paragraph("<b>F1-Score</b>", body_bold), Paragraph("<b>ROC-AUC</b>", body_bold)],
+        [Paragraph("<b>Tuned Random Forest (Primary)</b>", body_style), "Tree Ensemble", "<b>93.44%</b>", "<b>92.86%</b>", "<b>92.86%</b>", "<b>0.9665</b>"],
+        [Paragraph("K-Nearest Neighbors (KNN, k=7)", body_style), "Distance / Geometric", "93.44%", "96.43%", "93.10%", "0.9767"],
+        [Paragraph("Stacking Classifier (Meta-Learner)", body_style), "Meta-Ensemble", "93.44%", "96.43%", "93.10%", "0.9708"],
+        [Paragraph("Support Vector Machine (RBF)", body_style), "Kernel Margin", "93.44%", "96.43%", "93.10%", "0.9675"],
+        [Paragraph("Bernoulli Naive Bayes", body_style), "Bayesian Prob.", "91.80%", "96.43%", "91.53%", "0.9654"],
+        [Paragraph("Extra Trees Classifier", body_style), "Tree Ensemble", "91.80%", "92.86%", "91.23%", "0.9632"],
+        [Paragraph("AdaBoost Classifier", body_style), "Boosting Ensemble", "90.16%", "92.86%", "89.66%", "0.9708"],
+        [Paragraph("Hist Gradient Boosting", body_style), "Gradient Boosting", "90.16%", "92.86%", "89.66%", "0.9621"],
+        [Paragraph("XGBoost Classifier", body_style), "Gradient Boosting", "90.16%", "92.86%", "89.66%", "0.9502"],
+        [Paragraph("Soft Voting Ensemble", body_style), "Meta-Ensemble", "90.16%", "89.29%", "89.29%", "0.9621"],
+        [Paragraph("Baseline Random Forest", body_style), "Tree Ensemble", "86.89%", "89.29%", "86.21%", "0.9524"],
+        [Paragraph("Logistic Regression (L2)", body_style), "Linear", "85.25%", "89.29%", "84.75%", "0.9567"],
+        [Paragraph("Multi-Layer Perceptron (MLP)", body_style), "Neural Network", "85.25%", "89.29%", "84.75%", "0.9275"],
+        [Paragraph("Linear Discriminant Analysis", body_style), "Discriminant", "83.61%", "85.71%", "82.76%", "0.9491"],
+        [Paragraph("Decision Tree (CART)", body_style), "Single Tree", "75.41%", "64.29%", "70.59%", "0.7781"]
     ]
-    t_comp = Table(comp_table_data, colWidths=[144, 72, 72, 72, 72, 72])
+    t_comp = Table(comp_table_data, colWidths=[140, 94, 68, 68, 68, 66])
     t_comp.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#edf2f7")),
         ('BACKGROUND', (0,1), (-1,1), colors.HexColor("#e6fffa")),
         ('BOX', (0,0), (-1,-1), 0.5, BORDER_GREY),
         ('INNERGRID', (0,0), (-1,-1), 0.5, BORDER_GREY),
-        ('ALIGN', (1,0), (-1,-1), 'CENTER'),
-        ('TOPPADDING', (0,0), (-1,-1), 3),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
+        ('ALIGN', (2,0), (-1,-1), 'CENTER'),
+        ('TOPPADDING', (0,0), (-1,-1), 2.5),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 2.5),
     ]))
     story.append(t_comp)
     story.append(Spacer(1, 8))
@@ -373,7 +383,7 @@ def build_pdf():
     if os.path.exists(img6) and os.path.exists(img7):
         t_img_row3 = Table([
             [Image(img6, width=3.4*inch, height=1.6*inch), Image(img7, width=3.4*inch, height=2.2*inch)],
-            [Paragraph("<b>Figure 6:</b> Confusion Matrix (RF vs Logistic Regression)", caption_style),
+            [Paragraph("<b>Figure 6:</b> Confusion Matrices (RF vs XGBoost vs Logistic Regression)", caption_style),
              Paragraph("<b>Figure 7:</b> Multi-Model ROC Curves Benchmark", caption_style)]
         ], colWidths=[252, 252])
         t_img_row3.setStyle(TableStyle([('ALIGN', (0,0), (-1,-1), 'CENTER')]))

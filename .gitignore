@@ -5,3 +5,5 @@ __pycache__/
 .vscode/
 .idea/
 raw_cleveland.data
+*.zip
+check_models.py

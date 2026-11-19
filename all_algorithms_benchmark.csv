@@ -1,0 +1,23 @@
+Model,Family,Accuracy (%),Precision (%),Recall (Sensitivity) (%),Specificity (%),F1-Score (%),ROC-AUC,False Negatives (FN),Fit Time (ms),Inference Latency (ms)
+"K-Nearest Neighbors (KNN, k=7)",Bayesian & Distance,93.44,90.0,96.43,90.91,93.1,0.9767,1,1.11,1.022
+Stacking Classifier (Meta-Learner),Meta-Ensembles,93.44,90.0,96.43,90.91,93.1,0.9686,1,597.95,0.23
+Support Vector Machine (RBF Kernel),Support Vector Machines,93.44,90.0,96.43,90.91,93.1,0.9675,1,6.01,0.016
+Tuned Random Forest (Primary),Decision Trees & Ensembles,93.44,92.86,92.86,93.94,92.86,0.9665,2,0.0,0.049
+Bernoulli Naive Bayes,Bayesian & Distance,91.8,87.1,96.43,87.88,91.53,0.9654,1,1.55,0.0
+Extra Trees Classifier,Decision Trees & Ensembles,91.8,89.66,92.86,90.91,91.23,0.9632,2,66.1,0.066
+AdaBoost Classifier,Decision Trees & Ensembles,90.16,86.67,92.86,87.88,89.66,0.9708,2,83.55,0.077
+Hist Gradient Boosting (Histogram-based),Gradient Boosting,90.16,86.67,92.86,87.88,89.66,0.9621,2,109.18,0.049
+Soft Voting Ensemble,Meta-Ensembles,90.16,89.29,89.29,90.91,89.29,0.9621,3,133.26,0.164
+XGBoost Classifier,Gradient Boosting,90.16,86.67,92.86,87.88,89.66,0.9502,2,52.44,0.082
+Support Vector Machine (Polynomial Kernel),Support Vector Machines,88.52,92.0,82.14,93.94,86.79,0.9405,5,4.99,0.016
+Ridge Classifier,Linear & Discriminant,86.89,81.25,92.86,81.82,86.67,0.9556,2,14.3,0.035
+Logistic Regression (L1 Lasso),Linear & Discriminant,86.89,83.33,89.29,84.85,86.21,0.9524,3,1.0,0.0
+Baseline Random Forest,Decision Trees & Ensembles,86.89,83.33,89.29,84.85,86.21,0.9524,3,67.01,0.033
+Gradient Boosting (GBM),Gradient Boosting,86.89,83.33,89.29,84.85,86.21,0.9437,3,70.57,0.016
+Logistic Regression (L2 Regularized),Linear & Discriminant,85.25,80.65,89.29,81.82,84.75,0.9567,3,5.89,0.0
+Support Vector Machine (Linear Kernel),Support Vector Machines,85.25,80.65,89.29,81.82,84.75,0.9545,3,5.63,0.018
+Multi-Layer Perceptron (Neural Net / MLP),Neural Networks,85.25,80.65,89.29,81.82,84.75,0.9275,3,557.73,0.017
+Linear Discriminant Analysis (LDA),Linear & Discriminant,83.61,80.0,85.71,81.82,82.76,0.9491,4,2.0,0.0
+SGD Classifier (Log Loss),Linear & Discriminant,83.61,80.0,85.71,81.82,82.76,0.9318,4,23.76,0.043
+Decision Tree Classifier (CART),Decision Trees & Ensembles,75.41,78.26,64.29,84.85,70.59,0.7781,10,1.98,0.016
+Gaussian Naive Bayes,Bayesian & Distance,60.66,54.35,89.29,36.36,67.57,0.8474,3,1.0,0.016
