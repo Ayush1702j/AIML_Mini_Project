@@ -259,7 +259,7 @@ for fold_idx, score in enumerate(cv_scores, 1):
     print(f" - Fold {fold_idx}: {score*100:.2f}%")
 print(f"Mean CV Accuracy: {cv_scores.mean()*100:.2f}% (+/- {cv_scores.std()*100:.2f}%)")"""))
 
-cells.append(md_cell("""### Remarks on Cross-Validation:
+cells.append(md_cell(r"""### Remarks on Cross-Validation:
 - **Generalization Stability:** The 5-fold cross-validation achieved a mean accuracy of **80.14%** with a minimal standard deviation ($\pm 2.28\%$), demonstrating that the model generalizes robustly and does not suffer from high fold-to-fold partition variance.
 - **Data Leakage Prevention:** The `StandardScaler` was strictly fitted onto `X_train` and only applied via `.transform()` to `X_test`, preventing optimistic performance inflation."""))
 
@@ -301,14 +301,16 @@ cells.append(md_cell("""### Hyperparameter Justification & Critical Analysis:
 4. **`criterion = 'gini'`**: Achieves optimal purity reduction while maintaining computational efficiency."""))
 
 # SECTION G
-cells.append(md_cell("""## Section G: Model Evaluation & Exhaustive Multi-Algorithm Benchmark [8 Marks, CO3 L5]
+cells.append(md_cell("""## Section G: Model Evaluation & Multi-Algorithm Benchmark [8 Marks, CO3 L5]
 ### Objective
-Evaluate the tuned Random Forest model and benchmark it comprehensively against **21 Machine Learning Algorithms** across all 5 major paradigms of AI/ML:
-1. **Linear & Discriminant Family:** Logistic Regression (L1 & L2), Ridge Classifier, Linear Discriminant Analysis (LDA), SGD Classifier
-2. **Bayesian & Distance / Geometric Family:** Gaussian Naive Bayes, Bernoulli Naive Bayes, K-Nearest Neighbors (KNN)
-3. **Support Vector Machines:** Linear Kernel, RBF Kernel, Polynomial Kernel
-4. **Tree & Ensemble Family:** Decision Tree (CART), Random Forest (Baseline & Tuned), Extra Trees, AdaBoost, Gradient Boosting (GBM), Hist Gradient Boosting, XGBoost
-5. **Neural & Meta-Ensembles:** Multi-Layer Perceptron (Neural Net / MLP), Soft Voting Ensemble, Stacking Classifier"""))
+Evaluate the tuned Random Forest model and benchmark it comprehensively against **7 Core Machine Learning Algorithms**:
+1. **Logistic Regression** (Linear Classification)
+2. **Naive Bayes** (Probabilistic Modeling)
+3. **KNN** (Instance-Based Distance Classification)
+4. **Decision Tree** (CART Tree Modeling)
+5. **SVM** (Kernel Support Vector Machine)
+6. **Random Forest** (Optimal Bagging Ensemble)
+7. **Gradient Boosting** (Sequential Boosting Ensemble)"""))
 
 cells.append(code_cell("""# 1. Evaluate Tuned Random Forest on Unseen Test Partition (N=61)
 y_pred_rf = best_rf.predict(X_test_scaled)
@@ -328,74 +330,29 @@ print(f"F1-Score            : {rf_f1*100:.2f}%")
 print(f"ROC-AUC Score       : {rf_auc:.4f}\\n")
 print(classification_report(y_test, y_pred_rf, target_names=["Healthy (0)", "CAD (1)"]))"""))
 
-cells.append(code_cell("""# 2. Comprehensive Multi-Algorithm Benchmark across 21 ML Models
-from sklearn.linear_model import LogisticRegression, RidgeClassifier, SGDClassifier
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
-from sklearn.naive_bayes import GaussianNB, BernoulliNB
+cells.append(code_cell("""# 2. Comprehensive Benchmark Across 7 Core Machine Learning Algorithms
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import (
-    RandomForestClassifier, ExtraTreesClassifier, AdaBoostClassifier,
-    GradientBoostingClassifier, HistGradientBoostingClassifier,
-    VotingClassifier, StackingClassifier
-)
-from xgboost import XGBClassifier
-from sklearn.neural_network import MLPClassifier
-from sklearn.calibration import CalibratedClassifierCV
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-all_algorithms = {
-    # Linear & Discriminant
-    "Logistic Regression (L2)": LogisticRegression(random_state=42, max_iter=1000),
-    "Logistic Regression (L1)": LogisticRegression(penalty='l1', solver='liblinear', random_state=42),
-    "Ridge Classifier": CalibratedClassifierCV(RidgeClassifier(random_state=42), cv=3),
-    "Linear Discriminant Analysis (LDA)": LinearDiscriminantAnalysis(),
-    "SGD Classifier (Log Loss)": CalibratedClassifierCV(SGDClassifier(loss='log_loss', random_state=42), cv=3),
-    # Bayesian & Distance
-    "Gaussian Naive Bayes": GaussianNB(),
-    "Bernoulli Naive Bayes": BernoulliNB(),
-    "K-Nearest Neighbors (KNN, k=7)": KNeighborsClassifier(n_neighbors=7),
-    # Support Vector Machines
-    "SVM (Linear Kernel)": SVC(kernel='linear', probability=True, random_state=42),
-    "SVM (RBF Kernel)": SVC(kernel='rbf', probability=True, random_state=42),
-    "SVM (Polynomial Kernel)": SVC(kernel='poly', degree=3, probability=True, random_state=42),
-    # Trees & Ensembles
-    "Decision Tree (CART)": DecisionTreeClassifier(max_depth=5, random_state=42),
-    "Baseline Random Forest": RandomForestClassifier(random_state=42),
-    "Tuned Random Forest (Primary)": best_rf,
-    "Extra Trees Classifier": ExtraTreesClassifier(n_estimators=150, max_depth=5, random_state=42),
-    "AdaBoost Classifier": AdaBoostClassifier(n_estimators=100, algorithm='SAMME', random_state=42),
-    "Gradient Boosting (GBM)": GradientBoostingClassifier(random_state=42),
-    "Hist Gradient Boosting": HistGradientBoostingClassifier(random_state=42),
-    "XGBoost Classifier": XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.08, eval_metric='logloss', random_state=42),
-    # Neural Network
-    "Multi-Layer Perceptron (MLP)": MLPClassifier(hidden_layer_sizes=(64, 32), max_iter=1000, random_state=42)
+core_algorithms = {
+    "Logistic Regression": LogisticRegression(random_state=42, max_iter=1000),
+    "Naive Bayes": GaussianNB(),
+    "KNN": KNeighborsClassifier(n_neighbors=7),
+    "Decision Tree": DecisionTreeClassifier(max_depth=4, random_state=42),
+    "SVM": SVC(kernel='rbf', probability=True, random_state=42),
+    "Random Forest": best_rf,
+    "Gradient Boosting": GradientBoostingClassifier(n_estimators=100, learning_rate=0.08, max_depth=3, random_state=42)
 }
-
-# Meta-Ensembles
-base_estimators = [
-    ('rf', best_rf),
-    ('svm', SVC(kernel='rbf', probability=True, random_state=42)),
-    ('xgb', XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.08, eval_metric='logloss', random_state=42)),
-    ('lr', LogisticRegression(random_state=42, max_iter=1000))
-]
-all_algorithms["Soft Voting Ensemble"] = VotingClassifier(estimators=base_estimators, voting='soft')
-all_algorithms["Stacking Classifier"] = StackingClassifier(
-    estimators=[
-        ('rf', best_rf),
-        ('svm', SVC(kernel='rbf', probability=True, random_state=42)),
-        ('knn', KNeighborsClassifier(n_neighbors=7)),
-        ('xgb', XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.08, eval_metric='logloss', random_state=42))
-    ],
-    final_estimator=LogisticRegression(random_state=42),
-    cv=3
-)
 
 benchmark_list = []
 roc_curves = {}
 
-for name, model in all_algorithms.items():
-    if name != "Tuned Random Forest (Primary)":
+for name, model in core_algorithms.items():
+    if name != "Random Forest":
         model.fit(X_train_scaled, y_train)
     preds = model.predict(X_test_scaled)
     probs = model.predict_proba(X_test_scaled)[:, 1] if hasattr(model, "predict_proba") else preds
@@ -418,7 +375,7 @@ for name, model in all_algorithms.items():
         "ROC-AUC": round(auc_score, 4)
     })
 
-benchmark_df = pd.DataFrame(benchmark_list).sort_values(by=["Accuracy (%)", "ROC-AUC"], ascending=False).reset_index(drop=True)
+benchmark_df = pd.DataFrame(benchmark_list).sort_values(by=["ROC-AUC", "Recall (%)"], ascending=False).reset_index(drop=True)
 display(benchmark_df.style.highlight_max(subset=["Accuracy (%)", "Recall (%)", "ROC-AUC"], color='#dcfce7'))"""))
 
 cells.append(code_cell("""# 3. Visualizations: Confusion Matrices, ROC Curves & Metric Heatmap

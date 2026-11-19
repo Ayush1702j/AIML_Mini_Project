@@ -1,7 +1,7 @@
 """
 CardioGuard AI™ - Enterprise Clinical Decision Support System (CDSS)
 Multi-Algorithm Machine Learning Platform for Coronary Artery Disease Risk Stratification
-Evaluates 21+ Machine Learning Algorithms Across 5 Major Paradigms
+Evaluates 7 Core Machine Learning Algorithms
 """
 
 import streamlit as st
@@ -268,12 +268,12 @@ with tab_predict:
     m_col_select, m_col_meta = st.columns([2.2, 1.2])
     with m_col_select:
         model_names_list = list(models_dict.keys())
-        default_idx = model_names_list.index("Tuned Random Forest (Primary)") if "Tuned Random Forest (Primary)" in model_names_list else 0
+        default_idx = model_names_list.index("Random Forest") if "Random Forest" in model_names_list else 0
         selected_model_name = st.selectbox(
             "🧠 Select Machine Learning Algorithm for Diagnosis:",
             options=model_names_list,
             index=default_idx,
-            help="Choose from 21+ trained algorithms (Ensembles, Boosters, SVM, Neural Nets, etc.)"
+            help="Choose from the 7 standard Machine Learning algorithms: Logistic Regression, Naive Bayes, KNN, Decision Tree, SVM, Random Forest, Gradient Boosting"
         )
     with m_col_meta:
         st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
@@ -564,8 +564,8 @@ with tab_benchmark:
 # TAB 3: ML PERFORMANCE & BENCHMARKS (ALL 21+ MODELS)
 # ==============================================================================
 with tab_model:
-    st.subheader(f"🤖 Exhaustive Machine Learning Benchmark ({len(models_dict)} Algorithms)")
-    st.markdown("Rigorous comparative evaluation on previously unseen test partition ($N=61$) across **5 major paradigms of AI/ML**:")
+    st.subheader(f"🤖 Machine Learning Benchmark ({len(models_dict)} Core Algorithms)")
+    st.markdown("Rigorous comparative evaluation on previously unseen test partition ($N=61$) across **the 7 core algorithms**: Logistic Regression, Naive Bayes, KNN, Decision Tree, SVM, Random Forest, and Gradient Boosting:")
 
     if summary and "comparison_table" in summary:
         comp_df = pd.DataFrame(summary["comparison_table"])
@@ -595,18 +595,18 @@ with tab_model:
         m_fig_cm = os.path.join(APP_DIR, "figures", "6_confusion_matrices.png")
         with bm_col1:
             if os.path.exists(m_fig_roc):
-                st.image(m_fig_roc, caption="Multi-Model ROC-AUC Benchmark Curves", use_column_width=True)
+                st.image(m_fig_roc, caption="Multi-Model ROC-AUC Benchmark Curves (7 Algorithms)", use_column_width=True)
         with bm_col2:
             if os.path.exists(m_fig_cm):
-                st.image(m_fig_cm, caption="Confusion Matrices: Random Forest vs XGBoost vs Logistic Regression", use_column_width=True)
+                st.image(m_fig_cm, caption="Confusion Matrices Across All 7 ML Algorithms (2x4 Grid)", use_column_width=True)
 
         m_fig_heat = os.path.join(APP_DIR, "figures", "10_algorithm_family_heatmap.png")
         m_fig_bar = os.path.join(APP_DIR, "figures", "9_model_comparison_bar.png")
         
         if os.path.exists(m_fig_heat):
-            st.image(m_fig_heat, caption="Comprehensive Performance Matrix Heatmap (All Models)", use_column_width=True)
+            st.image(m_fig_heat, caption="Comprehensive Performance Matrix Heatmap (7 Algorithms)", use_column_width=True)
         if os.path.exists(m_fig_bar):
-            st.image(m_fig_bar, caption="Top 10 Models Multi-Metric Comparison", use_column_width=True)
+            st.image(m_fig_bar, caption="7 Core ML Algorithms Multi-Metric Comparison", use_column_width=True)
 
         st.markdown("#### ⚙️ Optimized Random Forest Hyperparameters (GridSearchCV):")
         cols = st.columns(len(summary.get("best_hyperparameters", {})))
