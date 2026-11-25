@@ -187,12 +187,20 @@ SUMMARY_PATH = os.path.join(APP_DIR, "evaluation_summary.json")
 
 @st.cache_resource
 def load_artifacts():
-    if os.path.exists(ALL_MODELS_PATH):
+    try:
+        if os.path.exists(ALL_MODELS_PATH):
+            models_dict = joblib.load(ALL_MODELS_PATH)
+        else:
+            models_dict = {"Random Forest": joblib.load(MODEL_PATH)}
+        scaler = joblib.load(SCALER_PATH)
+    except Exception as e:
+        # In case of scikit-learn version mismatch across environments, re-compile artifacts cleanly
+        import subprocess, sys
+        train_script = os.path.join(APP_DIR, "train_and_evaluate.py")
+        subprocess.run([sys.executable, train_script], check=True, cwd=APP_DIR)
         models_dict = joblib.load(ALL_MODELS_PATH)
-    else:
-        models_dict = {"Tuned Random Forest (Primary)": joblib.load(MODEL_PATH)}
+        scaler = joblib.load(SCALER_PATH)
     
-    scaler = joblib.load(SCALER_PATH)
     with open(FEATURES_PATH, "r") as f:
         feature_names = json.load(f)
     summary = None
