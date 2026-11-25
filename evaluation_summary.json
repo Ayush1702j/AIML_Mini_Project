@@ -30,8 +30,8 @@
             "ROC-AUC": 0.9767,
             "5-Fold CV AUC Mean (%)": 86.08,
             "5-Fold CV AUC Std (%)": 3.27,
-            "Train Time (ms)": 0.0,
-            "Inference Time/Sample (ms)": 1.1405
+            "Train Time (ms)": 3.68,
+            "Inference Time/Sample (ms)": 3.4706
         },
         {
             "Model": "SVM",
@@ -44,8 +44,8 @@
             "ROC-AUC": 0.9675,
             "5-Fold CV AUC Mean (%)": 87.8,
             "5-Fold CV AUC Std (%)": 2.22,
-            "Train Time (ms)": 7.75,
-            "Inference Time/Sample (ms)": 0.0328
+            "Train Time (ms)": 43.01,
+            "Inference Time/Sample (ms)": 0.0671
         },
         {
             "Model": "Random Forest",
@@ -59,7 +59,7 @@
             "5-Fold CV AUC Mean (%)": 89.79,
             "5-Fold CV AUC Std (%)": 2.05,
             "Train Time (ms)": 0.0,
-            "Inference Time/Sample (ms)": 0.0488
+            "Inference Time/Sample (ms)": 0.2342
         },
         {
             "Model": "Logistic Regression",
@@ -72,8 +72,8 @@
             "ROC-AUC": 0.9567,
             "5-Fold CV AUC Mean (%)": 90.93,
             "5-Fold CV AUC Std (%)": 1.91,
-            "Train Time (ms)": 20.84,
-            "Inference Time/Sample (ms)": 0.0164
+            "Train Time (ms)": 34.15,
+            "Inference Time/Sample (ms)": 0.0329
         },
         {
             "Model": "Gradient Boosting",
@@ -84,10 +84,10 @@
             "Specificity (%)": 87.88,
             "F1-Score (%)": 87.72,
             "ROC-AUC": 0.9307,
-            "5-Fold CV AUC Mean (%)": 84.82,
-            "5-Fold CV AUC Std (%)": 2.22,
-            "Train Time (ms)": 69.67,
-            "Inference Time/Sample (ms)": 0.0655
+            "5-Fold CV AUC Mean (%)": 85.4,
+            "5-Fold CV AUC Std (%)": 2.66,
+            "Train Time (ms)": 229.74,
+            "Inference Time/Sample (ms)": 0.0986
         },
         {
             "Model": "Decision Tree",
@@ -100,8 +100,8 @@
             "ROC-AUC": 0.8923,
             "5-Fold CV AUC Mean (%)": 78.99,
             "5-Fold CV AUC Std (%)": 3.34,
-            "Train Time (ms)": 1.01,
-            "Inference Time/Sample (ms)": 0.0164
+            "Train Time (ms)": 3.01,
+            "Inference Time/Sample (ms)": 0.033
         },
         {
             "Model": "Naive Bayes",
@@ -114,8 +114,8 @@
             "ROC-AUC": 0.8474,
             "5-Fold CV AUC Mean (%)": 86.37,
             "5-Fold CV AUC Std (%)": 3.58,
-            "Train Time (ms)": 0.94,
-            "Inference Time/Sample (ms)": 0.0173
+            "Train Time (ms)": 7.84,
+            "Inference Time/Sample (ms)": 0.0557
         }
     ],
     "available_models": [
